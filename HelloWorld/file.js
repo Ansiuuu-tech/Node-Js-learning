@@ -1,9 +1,9 @@
 const fs=require('fs');
-
-//Synchronous way to create/write file
+const os=require('os');
+//Synchronous way to create/write file.....Blocking
 // fs.writeFileSync('./test.txt',"Hey Anshul! Welcome to the world of JavaScript!");
 
-//asynchronous way to write/create file
+//asynchronous way to write/create file....Non-blocking
 //fs.writeFile('./test.txt',"Hey Anshul!(Async) Welcome to the world of JavaScript!",(err)=>{})
 
 //Synchronous way to read file
@@ -36,3 +36,29 @@ fs.appendFileSync('./test.txt',"Hey Anshul! Welcome to the world of JavaScript!\
 
 //create directory
    //fs.mkdirSync("my-docs/a/b",{recursive:true}); 
+
+// console.log('1');
+//         //Blocking...
+//    const result=fs.readFileSync("contacts.txt","utf8");
+//    console.log(result);
+
+//    console.log('2');
+
+//    console.log('1');
+//         //Non-Blocking...
+//    fs.readFile("contacts.txt","utf8",(err,data)=>{
+//       if(err){
+//          console.log(err);
+//       }
+//       else{
+//          console.log(data);
+//       }
+//    });
+
+//    console.log('2');
+
+
+   //Default thread pool size is 4 in Node.js
+   //Max? - 12 threads in my system (default)-8max.
+
+   console.log(os.cpus().length); //12
