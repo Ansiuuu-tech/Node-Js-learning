@@ -1,24 +1,20 @@
-21/2/2026, 12:40:37 pm /
+24/2/2026, 2:45:29 pm:GET / New request received
 
-21/2/2026, 12:40:37 pm /favicon.ico
+// version
+ "express": "^5.2.1"
 
-21/2/2026, 12:41:19 pm /about
+ 1st part -> 5
+ 2nd part -> 2
+ 3rd part -> 1
 
-21/2/2026, 12:41:20 pm /favicon.ico
+ // 3rd part (last part) - Minor fixes (optional)
 
-21/2/2026, 12:42:29 pm /about?myname=anshu
+ // 2nd part - recommended bug fix (security fix)
 
-21/2/2026, 12:42:29 pm /favicon.ico
+ // 1st part - major / breaking 
 
-21/2/2026, 2:01:54 pm /about?myname=anshu
 
-21/2/2026, 2:16:10 pm /about?myname=anshu
+ install = "express": "^5.2.1"
+ 5th version
 
-21/2/2026, 2:16:11 pm /about?myname=anshu
-
-21/2/2026, 2:18:21 pm /about?myname=anshu
-
-21/2/2026, 2:29:44 pm /about?myname=anshu
-
-21/2/2026, 2:30:39 pm /about?myname=anshu
-
+ ^ - install all recommended and minor fixes automatically 
