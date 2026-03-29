@@ -1,0 +1,2 @@
+Schema - Define the structure of the data in the database. It is a blueprint for how the data will be stored and accessed. A schema defines the fields, their types, and any validation rules for the data. In Mongoose, you can create a schema using the `mongoose.Schema` constructor.
+Schema - Model we do crud operations
