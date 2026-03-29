@@ -1,35 +1,28 @@
-const express=require('express');
-const users=require("./MOCK_DATA.json");
-const app=express();
-const port=8000
+const express = require("express");
+const {connectToDatabase}=require("./connection");
+
+const {requestLogger}=require("./middleware");
+
+const userRouter= require("./routes/user");
+
+const app = express();
+const port = 8000;
+
+//connection
+connectToDatabase("mongodb://localhost:27017/youtube-app-1").then(()=>{
+    console.log("Connected to MongoDB successfully");
+})
+
+//middleware
+app.use(express.urlencoded({extended:false}));
+app.use(requestLogger("log.txt"));
+
+
+
+
+
 //routes
-// app.get("/users",(req,res)=>{
-//     const html=`
-//     <ul>
-//     ${users.map((user)=> `<li>${user.first_name}</li>`).join}
-//     </ul>`;
-//     res.send(html);
-// })
+app.use("/api/users", userRouter);
 
-app
-.route("/api/users/:id")
-.get((req,res) =>{
-    const id=Number(req.params.id);
-    const user = users.find((user)=> user.id==id)
-    return res.json(user)
-})
-.patch((req,res)=>{
-    //edit user with id
-    res.json({status:"pending"})
-})
-.delete((req,res)=>{
-     //delete user with id
-    res.json({status:"pending"})
-})
-app.post("/api/users",(req,res)=>
-{
-    //todo: create new user
-    return res.json({status : "pending"});
-})
 
-app.listen(port,()=> console.log(`Server started at port:${port}`))
+app.listen(port, () => console.log(`Server started at port:${port}`));
