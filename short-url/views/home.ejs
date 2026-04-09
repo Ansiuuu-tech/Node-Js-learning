@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortly - URL Shortener</title>
+    <style>
+        :root {
+            --bg: #f6f7f9;
+            --surface: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --primary: #1d4ed8;
+            --primary-hover: #1e40af;
+            --success-bg: #ecfdf5;
+            --success-border: #a7f3d0;
+            --success-text: #065f46;
+            --error-bg: #fef2f2;
+            --error-border: #fecaca;
+            --error-text: #991b1b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top left, #ffffff, var(--bg));
+            display: grid;
+            place-items: center;
+            color: var(--text);
+            padding: 16px;
+        }
+
+        .card {
+            width: min(100%, 640px);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 1.75rem;
+            line-height: 1.2;
+        }
+
+        p {
+            margin: 8px 0 20px;
+            color: var(--muted);
+        }
+
+        form {
+            display: grid;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        label {
+            font-size: 0.92rem;
+            font-weight: 600;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input[type="url"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+        }
+
+        button {
+            margin-top: 6px;
+            width: 100%;
+            padding: 12px 16px;
+            border: none;
+            border-radius: 10px;
+            background: var(--primary);
+            color: #ffffff;
+            font-size: 0.96rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        button:hover {
+            background: var(--primary-hover);
+        }
+
+        .result {
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 10px;
+            background: var(--success-bg);
+            border: 1px solid var(--success-border);
+            color: var(--success-text);
+        }
+
+        .error {
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 10px;
+            background: var(--error-bg);
+            border: 1px solid var(--error-border);
+            color: var(--error-text);
+        }
+
+        .result a {
+            color: inherit;
+            font-weight: 600;
+            text-decoration-thickness: 2px;
+            word-break: break-all;
+        }
+
+        .footer {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: var(--muted);
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main class="card">
+        <h1>Shortly</h1>
+        <p>Paste a long URL and get a short link instantly.</p>
+
+        <form action="/url" method="post">
+            <label for="longUrl">Long URL</label>
+            <input
+                id="longUrl"
+                type="url"
+                name="longUrl"
+                placeholder="https://example.com"
+                required
+            />
+            <button type="submit">Create short URL</button>
+        </form>
+
+        <% if (shortUrl) { %>
+            <section class="result">
+                <strong>Short URL created:</strong>
+                <a href="<%= shortUrl %>"><%= shortUrl %></a>
+            </section>
+        <% } %>
+
+        <% if (error) { %>
+            <section class="error">
+                <strong>Error:</strong> <%= error %>
+            </section>
+        <% } %>
+
+        <p class="footer">Simple and clean URL shortener powered by Express + EJS.</p>
+    </main>
+</body>
+</html>
