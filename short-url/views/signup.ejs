@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Shortly</title>
+    <style>
+        :root {
+            --bg: #f6f7f9;
+            --surface: #ffffff;
+            --text: #111827;
+            --muted: #6b7280;
+            --border: #e5e7eb;
+            --primary: #1d4ed8;
+            --primary-hover: #1e40af;
+            --error-bg: #fef2f2;
+            --error-border: #fecaca;
+            --error-text: #991b1b;
+        }
+
+        body {
+            font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background: radial-gradient(circle at top left, #ffffff, var(--bg));
+            display: grid;
+            place-items: center;
+            color: var(--text);
+            padding: 16px;
+        }
+
+        .card {
+            width: min(100%, 400px);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 32px;
+            box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+        }
+
+        h1 { margin: 0 0 8px; font-size: 1.75rem; text-align: center; }
+        p { margin: 0 0 24px; color: var(--muted); text-align: center; font-size: 0.95rem; }
+
+        form { display: grid; gap: 16px; }
+        .field { display: grid; gap: 6px; }
+        label { font-size: 0.9rem; font-weight: 600; }
+        
+        input {
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.15);
+        }
+
+        button {
+            margin-top: 8px;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            background: var(--primary);
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        button:hover { background: var(--primary-hover); }
+
+        .error {
+            padding: 12px;
+            border-radius: 10px;
+            background: var(--error-bg);
+            border: 1px solid var(--error-border);
+            color: var(--error-text);
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        .footer {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Create Account</h1>
+        <p>Start shortening your links today</p>
+
+        <% if (locals.error) { %>
+            <div class="error"><%= error %></div>
+        <% } %>
+
+        <form action="/user" method="POST">
+            <div class="field">
+                <label for="username">Full Name</label>
+                <input type="text" id="username" name="username" placeholder="John Doe" required>
+            </div>
+
+            <div class="field">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="field">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+
+            <button type="submit">Sign Up</button>
+        </form>
+
+        <div class="footer">
+            Already have an account? <a href="/login">Login</a>
+        </div>
+    </div>
+</body>
+</html>
