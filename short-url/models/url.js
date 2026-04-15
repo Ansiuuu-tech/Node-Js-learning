@@ -17,6 +17,12 @@ const urlSchema = new mongoose.Schema({
                 default:Date.now 
             }
 }]
+,    createdBy:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    }
+    
 });
 
 const url=mongoose.model("Url",urlSchema);

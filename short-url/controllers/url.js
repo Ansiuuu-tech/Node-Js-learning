@@ -23,7 +23,8 @@ async function handleGenerateNewShortUrl(req, res) {
         await Url.create({
             shortId,
             longUrl,
-            visitHistory: []
+            visitHistory: [],
+            createdBy: req.user.id
         });
 
         if (!prefersJson) {
@@ -52,6 +53,9 @@ async function handleGenerateNewShortUrl(req, res) {
 async function handleGetAnalytics(req, res) {
     const shortId = req.params.shortId;
     const result = await Url.findOne({ shortId });
+    if (!result) {
+        return res.status(404).json({ error: "Short URL not found" });
+    }
     return res.json({totalClicks:result.visitHistory.length, visitHistory:result.visitHistory});
 }
 module.exports = {
