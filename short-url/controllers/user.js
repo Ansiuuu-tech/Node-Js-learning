@@ -1,4 +1,3 @@
-const {v4: uuidv4 } = require('uuid');
 const {setUser}=require('../service/auth')
 const User=require('../models/user');
 async function handleUserSignup(req, res) {
@@ -25,7 +24,7 @@ async function handleUserLogin(req, res) {
         }
 
         const token = setUser(user);
-        res.cookie("uid", token);
+        res.cookie("uid", token, { httpOnly: true });
         return res.redirect("/");
     } catch (error) {
         return res.status(500).render("login", {
